@@ -6,7 +6,10 @@ const catgeorySchema = new Schema(
             type: String,
             required: true,
         },
-        deletedAt: Date,
+        deletedAt: {
+            type: Date,
+            default: null,
+        },
         products: [
             {
                 ref: "Product",
@@ -19,12 +22,12 @@ const catgeorySchema = new Schema(
     }
 );
 
-catgeorySchema.pre("find", async function () {
-    await this.populate({
-        path: "products",
-        select: "-categoryId",
-    }).exec();
-});
+// catgeorySchema.pre("find", async function () {
+//     await this.populate({
+//         path: "products",
+//         select: "-categoryId",
+//     }).exec();
+// });
 
 const catgeoryModel = model("Catgeory", catgeorySchema);
 

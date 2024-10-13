@@ -21,8 +21,8 @@ const options = {
         openapi: "3.0.0",
         info: {
             version: "1.0.0",
-            title: "Node API - Swagger",
-            description: "API with Swagger",
+            title: "Billing Software - Swagger",
+            description: "Billing Software  with Swagger",
         },
         servers: [
             {

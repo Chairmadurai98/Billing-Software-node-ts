@@ -5,8 +5,8 @@
   "main": "index.ts",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js",
-    "dev": "tsc && nodemon --watch .env.local --exec ts-node src/index.ts"
+    "start": "node --env-file=.env.production dist/index.js",
+    "dev": "tsc && nodemon --exec ts-node src/index.ts"
   },
   "author": "",
   "license": "ISC",

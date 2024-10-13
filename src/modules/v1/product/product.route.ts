@@ -52,7 +52,7 @@ productRouter.get("/", productController.getAllProduct);
  */
 
 
-productRouter.get("/:id", productController.getSingleProduct);
+productRouter.get("/:_id", productController.getSingleProduct);
 
 
 /**
@@ -109,7 +109,7 @@ productRouter.post("/", productController.createProduct);
  * 
  */
 
-productRouter.put("/:id", productController.updateProduct);
+productRouter.put("/:_id", productController.updateProduct);
 
 
 /**
@@ -134,6 +134,6 @@ productRouter.put("/:id", productController.updateProduct);
  *               $ref: '#/components/schemas/Product'
  */
 
-productRouter.delete("/:id", productController.deleteProduct);
+productRouter.delete("/:_id", productController.deleteProduct);
 
 export default productRouter;

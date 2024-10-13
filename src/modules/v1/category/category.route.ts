@@ -50,7 +50,7 @@ categoryRouter.get("/", categoryController.getAllCategory);
  *             schema:
  *               $ref: '#/components/schemas/Category'
  */
-categoryRouter.get("/:id", categoryController.getSingleCategory);
+categoryRouter.get("/:_id", categoryController.getSingleCategory);
 
 /**
  * @swagger
@@ -103,7 +103,7 @@ categoryRouter.post("/", categoryController.createCategory);
  *               $ref: '#/components/schemas/Category'
  */
 
-categoryRouter.put("/:id", categoryController.updateCategory);
+categoryRouter.put("/:_id", categoryController.updateCategory);
 
 /**
  * @swagger
@@ -127,6 +127,6 @@ categoryRouter.put("/:id", categoryController.updateCategory);
  *               $ref: '#/components/schemas/Category'
  */
 
-categoryRouter.delete("/:id", categoryController.deleteCategory);
+categoryRouter.delete("/:_id", categoryController.deleteCategory);
 
 export default categoryRouter;

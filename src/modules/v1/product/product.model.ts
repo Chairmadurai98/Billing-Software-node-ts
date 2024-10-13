@@ -36,13 +36,13 @@ const productSchema = new Schema(
     }
 );
 
-productSchema.pre("find", async function (next) {
-    // if (this instanceof Query) {
-    //     await this.populate("categoryId").exec();
-    // }
+// productSchema.pre("find", async function (next) {
+//      if (this instanceof Query) {
+//         await this.populate("categoryId").exec();
+//      }
 
-    next();
-});
+//     next();
+// });
 const productModel = model("Product", productSchema);
 
 export default productModel;
