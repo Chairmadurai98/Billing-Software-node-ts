@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import catgeoryModel from "./category.model";
 
 export const populateProduct = {
@@ -6,24 +7,53 @@ export const populateProduct = {
     match: { deletedAt: null },
 };
 
-export const findCategoryById = async (_id: string, populate: boolean = true) => {
-    try {
-        const category = await catgeoryModel
-            .findOne({
-                _id,
-                deletedAt: { $eq: null },
-            })
-            .populate(populate ? populateProduct : (null as never))
-            .exec();
-        if (!category) {
-            throw {
-                message: "Category not found",
-            };
-        }
+export const projectProduct = [{
+    $lookup: {
+        as: "products",
+        from: "products",
+        localField: "products",
+        foreignField: "_id",
+        pipeline: [{
+            $project: {
+                _id: 0,
+                "label": "$productName",
+                parentId: "$categoryId",
+                value: "$_id"
+            }
+        }]
+    }
+}]
 
+export const findCategoryById = async (_id: string)=>{
+    try {
+        const category = catgeoryModel.findOne({
+            _id,
+            deletedAt : null
+        }).exec()
+        if (!category) {
+            throw "Catgeory not found"
+        }
+        return category
+    } catch (error) {
+        
+    }
+}
+
+export const findCategoryByAggregate = async (_id: string,) => {
+    try {
+        const [category] = await catgeoryModel.aggregate([{
+            $match: {
+                _id: new mongoose.Types.ObjectId(_id),
+                deletedAt: null
+            }
+        },
+        ...projectProduct
+        ]).exec();
+        if (!category) {
+            throw "Catgeory not found"
+        }
         return category;
     } catch (error) {
-        console.log(error, "error");
-        throw error;
+        throw error
     }
 };

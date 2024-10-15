@@ -8,11 +8,12 @@ export const CustomResponse: CustomResponseType<Response> = {
             data,
         });
     },
-    error: ({ res, error, status = 500, message = "Error" }) => {
+    error: ({ res, error, status = 500 }) => {
+        const errorMessage = new Error((error as never))?.message
         return res.status(status).json({
             status: false,
-            error,
-            message,
+            error : errorMessage,
+
         });
     },
 };

@@ -1,16 +1,18 @@
 import { Request, Response } from "express";
 import { CustomResponse } from "../../../_utils/helpers";
 import catgeoryModel from "./category.model";
-import { findCategoryById, populateProduct } from "./_utils";
+import { findCategoryByAggregate, findCategoryById, projectProduct } from "./_utils";
 import productModel from "../product/product.model";
 
 export const getAllCategory = async (_req: Request, res: Response) => {
     try {
-        const data = await catgeoryModel
-            .find({
-                deletedAt: null,
-            })
-            .populate(populateProduct)
+        const data = await catgeoryModel.aggregate([{
+            $match: {
+                "deletedAt": null
+            }
+        },
+        ...projectProduct
+        ])
             .exec();
         CustomResponse.success({ res, data });
     } catch (error) {
@@ -22,7 +24,7 @@ export const getSingleCategory = async (req: Request, res: Response) => {
     try {
         const { _id } = req.params;
         //Not found throws error
-        const data = await findCategoryById(_id);
+        const data = await findCategoryByAggregate(_id)
         CustomResponse.success({ res, data });
     } catch (error) {
         CustomResponse.error({ res, error });
@@ -69,7 +71,10 @@ export const deleteCategory = async (req: Request, res: Response) => {
                 }
             ),
             await productModel.updateMany(
-                { categoryId: _id },
+                {
+                    categoryId: _id,
+                    deletedAt: null
+                },
                 { $set: { deletedAt: new Date() } },
                 {
                     new: true,
