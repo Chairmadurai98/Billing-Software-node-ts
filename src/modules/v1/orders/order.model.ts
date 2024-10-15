@@ -9,6 +9,7 @@ const orderSchema = new Schema({
         type : Date,
         default : null
     },
+    totalAmount : Number,
     products : [{
         productId : [{
             ref : "Product",

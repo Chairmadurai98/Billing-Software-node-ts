@@ -187,6 +187,58 @@ v1Router.use("/product", productRouter);
  *         updatedAt: "2020-01-01T00:00:00.000Z"
  */
 
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     OrderProduct:
+ *       type: object
+ *       properties:
+ *         productId:
+ *           type: string
+ *           format: uuid
+ *           example: "60d5ec49f0d1f73f4c90c5f1"  # Example ObjectId
+ *         price:
+ *           type: number
+ *           format: float
+ *           example: 100
+ *         totalPrice:
+ *           type: number
+ *           format: float
+ *           example: 200
+ *         quantity:
+ *           type: integer
+ *           example: 2
+ *     Order:
+ *       type: object
+ *       properties:
+ *         orderId:
+ *           type: string
+ *           example: "ORD123456"
+ *         deletedAt:
+ *           type: string
+ *           format: date-time
+ *           example: "2020-01-01T00:00:00.000Z"
+ *         totalAmount:
+ *           type: number
+ *           format: float
+ *           example: 300
+ *         products:
+ *           type: array
+ *           items:
+ *             $ref: '#/components/schemas/OrderProduct'
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *           example: "2020-01-01T00:00:00.000Z"
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ *           example: "2020-01-01T00:00:00.000Z"
+ * 
+ */
+
 v1Router.use("/order", orderRouter);
 
 

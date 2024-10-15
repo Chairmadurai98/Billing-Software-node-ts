@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { CustomResponse } from "../../../_utils/helpers";
 import catgeoryModel from "./order.model";
+import orderModel from "./order.model";
 
 export const getAllOrder = async (_req: Request, res: Response) => {
     try {
@@ -22,7 +23,7 @@ export const getSingleOrder = async (req: Request, res: Response) => {
 
 export const createOrder = async (req: Request, res: Response) => {
     try {
-        const data = await catgeoryModel.create(req.body);
+        const data = await orderModel.create(req.body);
         CustomResponse.success({ res, data });
     } catch (error) {
         CustomResponse.error({ res, error });
