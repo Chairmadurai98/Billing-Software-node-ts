@@ -19,6 +19,12 @@ const catgeorySchema = new Schema(
     },
     {
         timestamps: true,
+        toJSON : {
+            virtuals : true
+        },
+        toObject : {
+            virtuals : true
+        },
     }
 );
 
@@ -28,6 +34,15 @@ const catgeorySchema = new Schema(
 //         select: "-categoryId",
 //     }).exec();
 // });
+
+catgeorySchema.virtual('label').get(function(){
+    const label = this.categoryName
+    return label
+})
+catgeorySchema.virtual('value').get(function(){
+    const value = this._id
+    return value
+})
 
 const catgeoryModel = model("Catgeory", catgeorySchema);
 

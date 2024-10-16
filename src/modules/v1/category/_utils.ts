@@ -3,7 +3,7 @@ import catgeoryModel from "./category.model";
 
 export const populateProduct = {
     path: "products",
-    select: "-categoryId",
+    select: "-categoryId -_id -__v",
     match: { deletedAt: null },
 };
 
@@ -24,12 +24,12 @@ export const projectProduct = [{
     }
 }]
 
-export const findCategoryById = async (_id: string)=>{
+export const findCategoryById = async (_id: string, populate = true)=>{
     try {
         const category = catgeoryModel.findOne({
             _id,
             deletedAt : null
-        }).exec()
+        }).populate(populate ? populateProduct : null as never).exec()
         if (!category) {
             throw "Catgeory not found"
         }

@@ -27,13 +27,23 @@ export const projectCategory = [{
         path: "$categoryId",
         preserveNullAndEmptyArrays: true
     }
+},{
+    $project  : {
+        label : "$productName",
+        value : "$_id",
+        categoryId : 1,
+        description : 1,
+        price : 1,
+        tax : 1,
+        productName : 1,
+    }
 }]
-export const findProductById = async (_id: string)=>{
+export const findProductById = async (_id: string, populate = false)=>{
     try {
         const product = productModel.findOne({
             _id,
             deletedAt : null
-        }).exec()
+        }).populate(populate ? populateCategory : null as never). exec()
         if (!product) {
             throw "Product not found"
         }

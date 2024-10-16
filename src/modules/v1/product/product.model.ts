@@ -33,6 +33,11 @@ const productSchema = new Schema(
     },
     {
         timestamps: true,
+        toJSON : {
+            virtuals : true
+        }, toObject : {
+            virtuals : true
+        }
     }
 );
 
@@ -43,6 +48,16 @@ const productSchema = new Schema(
 
 //     next();
 // });
+
+productSchema.virtual('label').get(function(){
+    const label = this.productName
+    return label
+})
+productSchema.virtual('value').get(function(){
+    const value = this._id
+    return value
+})
+
 const productModel = model("Product", productSchema);
 
 export default productModel;

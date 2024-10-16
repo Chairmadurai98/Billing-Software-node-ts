@@ -1,17 +1,15 @@
 import { Request, Response } from "express";
 import { CustomResponse } from "../../../_utils/helpers";
 import productModel from "./product.model";
-import { findProductByAggregate, findProductById, projectCategory } from "./_utils";
+import { findProductById, populateCategory } from "./_utils";
 import catgeoryModel from "../category/category.model";
 import { findCategoryById } from "../category/_utils";
 
 export const getAllProduct = async (_req: Request, res: Response) => {
     try {
-        const data = await productModel.aggregate([{
-                $match : {
-                    deletedAt : null
-                }
-        }, ...projectCategory]).exec();
+        const data = await productModel.find({
+            deletedAt: null
+        }).populate(populateCategory).exec();
         CustomResponse.success({ res, data });
     } catch (error) {
         CustomResponse.error({ res, error });
@@ -23,7 +21,7 @@ export const getSingleProduct = async (req: Request, res: Response) => {
         const { _id } = req.params;
         //Not found throws error
 
-        const data = await findProductByAggregate(_id);
+        const data = await findProductById(_id);
 
         CustomResponse.success({ res, data });
     } catch (error) {
