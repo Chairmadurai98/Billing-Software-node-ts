@@ -2,9 +2,41 @@ import { Router } from "express";
 import categoryRouter from "./category/category.route";
 import productRouter from "./product/product.route";
 import orderRouter from "./orders/order.route";
+import essentialRouter from "./essentials/essential.route";
 
 
 const v1Router = Router();
+/**
+ * @swagger
+ * tags: 
+ *   name: Essential
+ *   description: The Essential managing API
+ */
+
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Essential:
+ *       type: object
+ *       properties:
+ *         Product:
+ *           type: array
+ *           items:
+ *             type: string
+ *             refs: Product
+ *           description: The list of the products
+ *         Category:
+ *           type: array
+ *           items:
+ *             type: string
+ *             refs: Category
+ *           description: The list of the categories
+ */
+
+v1Router.use("/essential", essentialRouter);
+
 
 /**
  * @swagger

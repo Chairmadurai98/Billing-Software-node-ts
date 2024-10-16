@@ -24,6 +24,21 @@ export const projectProduct = [{
     }
 }]
 
+
+export const findCategoryList =async ()=>{
+    try {
+        const  product = await catgeoryModel.find({
+            deletedAt : null
+        }).populate(populateProduct).exec()
+        if (!product) {
+            throw "Category not found"
+        }
+        return product
+    } catch (error) {
+        throw error;
+    }
+}
+
 export const findCategoryById = async (_id: string, populate = true)=>{
     try {
         const category = catgeoryModel.findOne({
