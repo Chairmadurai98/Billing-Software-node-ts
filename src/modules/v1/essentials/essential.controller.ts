@@ -13,7 +13,6 @@ export const essentialGetAll = async (req: Request, res: Response) => {
             essentialData.forEach((essential, index)=>{
                 data[includes[index]] = essential as never
             })
-            
         }
 
         CustomResponse.success({

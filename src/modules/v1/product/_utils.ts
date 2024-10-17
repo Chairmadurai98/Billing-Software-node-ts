@@ -7,7 +7,7 @@ export const populateCategory = {
     match: { deletedAt: null },
 };
 
-export const projectCategory = [{
+export const projectCategoryLookup = {
     $lookup: {
         as: "categoryId",
         from: "catgeories",
@@ -22,6 +22,10 @@ export const projectCategory = [{
                 }
             }]
     }
+}
+
+export const projectCategory = [{
+    ...projectCategoryLookup
 }, {
     $unwind: {
         path: "$categoryId",

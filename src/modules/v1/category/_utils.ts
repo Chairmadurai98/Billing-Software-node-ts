@@ -17,7 +17,6 @@ export const projectProduct = [{
             $project: {
                 _id: 0,
                 "label": "$productName",
-                parentId: "$categoryId",
                 value: "$_id"
             }
         }]
