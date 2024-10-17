@@ -9,7 +9,23 @@ const orderSchema = new Schema({
         type : Date,
         default : null
     },
-    totalAmount : Number,
+    totalAmount : {
+        type : Number,
+        default : 0
+    },
+    subTotal : {
+        type : Number,
+        default : 0
+    },
+    paymentMethod : {
+        type : String,
+        default : "Cash",
+        enum : ['Cash', 'Credit Card', 'Debit Card', 'Mobile Payment']
+    },
+    discount : { 
+        type : Number,
+        default : 0
+    },
     products : [{
         productId : [{
             ref : "Product",
