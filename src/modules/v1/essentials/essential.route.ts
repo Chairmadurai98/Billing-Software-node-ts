@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as essentialController  from "./essential.controller";
+import asyncHandler from "../../../_utils/middlewares/ayncHandler.middleware";
 
 const essentialRouter = Router();
 
@@ -31,7 +32,7 @@ const essentialRouter = Router();
  *                       description: The list of the categories
  */
 
-essentialRouter.get("/", essentialController.essentialGetAll);
+essentialRouter.get("/", asyncHandler(essentialController.essentialGetAll));
 
 
 export default essentialRouter

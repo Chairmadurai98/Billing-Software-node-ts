@@ -28,11 +28,12 @@ const catgeorySchema = new Schema(
     }
 );
 
-// catgeorySchema.pre("find", async function () {
+// catgeorySchema.pre("find", async function (next) {
 //     await this.populate({
 //         path: "products",
 //         select: "-categoryId",
 //     }).exec();
+//     next()
 // });
 
 catgeorySchema.virtual('label').get(function(){

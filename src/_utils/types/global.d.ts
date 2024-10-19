@@ -7,7 +7,7 @@ type SuccessResponseType<Response = unknown> = {
 }
 
 type ErrorResponseType<Response = unknown> = {
-    error: Error | unknown,
+    error: Error | any,
     message?: string,
     status?: 400 | 404 | 500,
     res : Response

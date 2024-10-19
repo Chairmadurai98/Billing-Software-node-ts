@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as productController from "./product.controller";
+import asyncHandler from "../../../_utils/middlewares/ayncHandler.middleware";
 
 /**
  * @swagger
@@ -27,7 +28,7 @@ const productRouter = Router();
  *                 $ref: '#/components/schemas/Product'
  *
  */
-productRouter.get("/", productController.getAllProduct);
+productRouter.get("/", asyncHandler(productController.getAllProduct));
 
 /**
  * @swagger
@@ -52,7 +53,7 @@ productRouter.get("/", productController.getAllProduct);
  */
 
 
-productRouter.get("/:_id", productController.getSingleProduct);
+productRouter.get("/:_id", asyncHandler(productController.getSingleProduct));
 
 
 /**
@@ -77,7 +78,7 @@ productRouter.get("/:_id", productController.getSingleProduct);
  *
  */
 
-productRouter.post("/", productController.createProduct);
+productRouter.post("/", asyncHandler(productController.createProduct));
 
 
 /**
@@ -109,7 +110,7 @@ productRouter.post("/", productController.createProduct);
  * 
  */
 
-productRouter.put("/:_id", productController.updateProduct);
+productRouter.put("/:_id", asyncHandler(productController.updateProduct));
 
 
 /**
@@ -134,6 +135,6 @@ productRouter.put("/:_id", productController.updateProduct);
  *               $ref: '#/components/schemas/Product'
  */
 
-productRouter.delete("/:_id", productController.deleteProduct);
+productRouter.delete("/:_id", asyncHandler(productController.deleteProduct));
 
 export default productRouter;

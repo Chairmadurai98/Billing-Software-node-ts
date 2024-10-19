@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as orderController from "./order.controller";
+import asyncHandler from "../../../_utils/middlewares/ayncHandler.middleware";
 
 /**
  * @swagger
@@ -27,7 +28,7 @@ const orderRouter = Router();
  *                 $ref: '#/components/schemas/Order'
  */
 
-orderRouter.get("/", orderController.getAllOrder);
+orderRouter.get("/", asyncHandler(orderController.getAllOrder));
 
 /**
  * @swagger
@@ -52,7 +53,7 @@ orderRouter.get("/", orderController.getAllOrder);
  * 
  */
 
-orderRouter.get("/:id", orderController.getSingleOrder);
+orderRouter.get("/:id", asyncHandler(orderController.getSingleOrder));
 
 /**
  * @swagger
@@ -76,7 +77,7 @@ orderRouter.get("/:id", orderController.getSingleOrder);
  * 
  */
 
-orderRouter.post("/", orderController.createOrder);
+orderRouter.post("/", asyncHandler(orderController.createOrder));
 
 /**
  * @swagger
@@ -105,7 +106,7 @@ orderRouter.post("/", orderController.createOrder);
  *             schema:
  *               $ref: '#/components/schemas/Order' 
  */ 
-orderRouter.put("/:id", orderController.updateOrder);
+orderRouter.put("/:id", asyncHandler(orderController.updateOrder));
 
 /**
  * @swagger
@@ -130,6 +131,6 @@ orderRouter.put("/:id", orderController.updateOrder);
  * 
  */
 
-orderRouter.delete("/:id", orderController.deleteOrder);
+orderRouter.delete("/:id", asyncHandler(orderController.deleteOrder));
 
 export default orderRouter;

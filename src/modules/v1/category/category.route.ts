@@ -1,5 +1,6 @@
 import { Router } from "express";
 import * as categoryController from "./category.controller";
+import asyncHandler from "../../../_utils/middlewares/ayncHandler.middleware";
 
 /**
  * @swagger
@@ -27,7 +28,7 @@ const categoryRouter = Router();
  *               items:
  *                 $ref: '#/components/schemas/Category'
  */
-categoryRouter.get("/", categoryController.getAllCategory);
+categoryRouter.get("/", asyncHandler(categoryController.getAllCategory));
 
 /**
  * @swagger
@@ -50,7 +51,7 @@ categoryRouter.get("/", categoryController.getAllCategory);
  *             schema:
  *               $ref: '#/components/schemas/Category'
  */
-categoryRouter.get("/:_id", categoryController.getSingleCategory);
+categoryRouter.get("/:_id", asyncHandler(categoryController.getSingleCategory));
 
 /**
  * @swagger
@@ -73,7 +74,7 @@ categoryRouter.get("/:_id", categoryController.getSingleCategory);
  *               $ref: '#/components/schemas/Category'
  */
 
-categoryRouter.post("/", categoryController.createCategory);
+categoryRouter.post("/", asyncHandler(categoryController.createCategory));
 
 /**
  * @swagger
@@ -103,7 +104,7 @@ categoryRouter.post("/", categoryController.createCategory);
  *               $ref: '#/components/schemas/Category'
  */
 
-categoryRouter.put("/:_id", categoryController.updateCategory);
+categoryRouter.put("/:_id", asyncHandler(categoryController.updateCategory));
 
 /**
  * @swagger
@@ -127,6 +128,6 @@ categoryRouter.put("/:_id", categoryController.updateCategory);
  *               $ref: '#/components/schemas/Category'
  */
 
-categoryRouter.delete("/:_id", categoryController.deleteCategory);
+categoryRouter.delete("/:_id", asyncHandler(categoryController.deleteCategory));
 
 export default categoryRouter;

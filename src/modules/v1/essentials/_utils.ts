@@ -1,6 +1,6 @@
-import { findCategoryList, projectProduct } from "../category/_utils"
+import { projectProduct } from "../category/_utils"
 import catgeoryModel from "../category/category.model"
-import { projectCategory, projectCategoryLookup } from "../product/_utils"
+import { projectCategoryLookup } from "../product/_utils"
 import productModel from "../product/product.model"
 
 
