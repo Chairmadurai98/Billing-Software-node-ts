@@ -1,10 +1,25 @@
-import { model, Schema } from "mongoose";
+import { model, Schema, Document, Model } from "mongoose";
 
-const orderSchema = new Schema({
-    orderId: {
-        type: String,
-        required: true,
-    },
+export type IOrder = {
+    orderId: string
+    deletedAt?: Date | null,
+    totalAmount: number
+    subTotal: number
+    paymentMethod: string
+    discount: number
+    products: {
+        productId: string
+        price: number
+        totalPrice: number
+        quantity: number
+    }[],
+    createdAt: Date,
+    updatedAt: Date
+}
+
+export type OrderType = IOrder & Document
+
+const orderSchema = new Schema<IOrder>({
     deletedAt : {
         type : Date,
         default : null
@@ -27,18 +42,29 @@ const orderSchema = new Schema({
         default : 0
     },
     products : [{
-        productId : [{
+        productId : {
             ref : "Product",
             type : Schema.Types.ObjectId
-        }],
+        },
         price : Number,
         totalPrice : Number,
         quantity : Number,
     }]
 }, {
-    timestamps: true
+    timestamps: true,
+    toJSON : {
+        virtuals : true
+    },
+    toObject : {
+        virtuals : true
+    }
 });
 
-const orderModel =  model('Order', orderSchema);
+
+orderSchema.virtual('orderId').get(function(this: OrderType) {
+    const orderId = "ORD-" + this.createdAt.getTime();  
+    return orderId;
+});
+const orderModel : Model<IOrder> = model<IOrder>('Order', orderSchema)
 
 export default orderModel;

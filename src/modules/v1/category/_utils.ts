@@ -23,7 +23,6 @@ export const projectProduct = [{
     }
 }]
 
-
 export const findCategoryList =async ()=>{
     try {
         const  product = await catgeoryModel.find({

@@ -19,10 +19,9 @@ export const essentialList: EssentialListTypeAsync = {
                 $project: {
                     label: "$productName",
                     value: "$_id",
+                    price : 1,
                     parentId: "$categoryId"
                 }
-            }, {
-                $limit: 1
             }]).exec()
             return products
         } catch (error) {

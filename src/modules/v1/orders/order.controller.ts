@@ -1,11 +1,10 @@
 import { Request, Response } from "express";
 import { CustomResponse } from "../../../_utils/helpers";
-import catgeoryModel from "./order.model";
 import orderModel from "./order.model";
 
 export const getAllOrder = async (_req: Request, res: Response) => {
     try {
-        const data = await catgeoryModel.find();
+        const data = await orderModel.find();
         CustomResponse.success({ res, data });
     } catch (error) {
         CustomResponse.error({ res, error });
@@ -14,7 +13,7 @@ export const getAllOrder = async (_req: Request, res: Response) => {
 
 export const getSingleOrder = async (req: Request, res: Response) => {
     try {
-        const data = await catgeoryModel.findById(req.params._id);
+        const data = await orderModel.findById(req.params._id);
         CustomResponse.success({ res, data });
     } catch (error) {
         CustomResponse.error({ res, error });
@@ -23,16 +22,18 @@ export const getSingleOrder = async (req: Request, res: Response) => {
 
 export const createOrder = async (req: Request, res: Response) => {
     try {
-        const data = await orderModel.create(req.body);
-        CustomResponse.success({ res, data });
+        const order = new orderModel(req.body);
+        const data = await order.save();
+        CustomResponse.success({ res, data  });
     } catch (error) {
+        console.log(error,"error")
         CustomResponse.error({ res, error });
     }
 };
 
 export const updateOrder = async (req: Request, res: Response) => {
     try {
-        const data = await catgeoryModel.findByIdAndUpdate(
+        const data = await orderModel.findByIdAndUpdate(
             req.params._id,
             req.body
         )
@@ -44,7 +45,7 @@ export const updateOrder = async (req: Request, res: Response) => {
 
 export const deleteOrder = async (req: Request, res: Response) => {
     try {
-        const data = await catgeoryModel.findByIdAndDelete(req.params._id);
+        const data = await orderModel.findByIdAndDelete(req.params._id);
         CustomResponse.success({ res, data });
     } catch (error) {
         CustomResponse.error({ res, error });
