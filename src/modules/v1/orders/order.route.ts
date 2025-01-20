@@ -17,6 +17,21 @@ const orderRouter = Router();
  *   get:
  *     summary: Returns the list of all the orders
  *     tags: [Order]
+ *     parameters:
+ *       - in: query
+ *         name: from
+ *         required: false
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: The start date for filtering orders (ISO format, e.g. "2025-01-01").
+ *       - in: query
+ *         name: to
+ *         required: false
+ *         schema:
+ *           type: string
+ *           format: date
+ *         description: The end date for filtering orders (ISO format, e.g. "2025-01-20").
  *     responses:
  *       200:
  *         description: The list of the orders
@@ -39,6 +54,7 @@ orderRouter.get("/", asyncHandler(orderController.getAllOrder));
  *     parameters:
  *       - in: path
  *         name: id
+ * 
  *         schema:
  *           type: string
  *         required: true

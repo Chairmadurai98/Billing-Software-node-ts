@@ -2,9 +2,18 @@ import { Request, Response } from "express";
 import { CustomResponse } from "../../../_utils/helpers";
 import orderModel from "./order.model";
 
-export const getAllOrder = async (_req: Request, res: Response) => {
+export const getAllOrder = async (req: Request, res: Response) => {
+
+    const { from  = new Date("2022-01-01"), to = new Date() } = req.query
     try {
-        const data = await orderModel.find();
+        const data = await orderModel.find({
+            createdAt : {
+                $gte : from,
+                $lte : to
+            }
+        }).sort({
+            createdAt : -1
+        });
         CustomResponse.success({ res, data });
     } catch (error) {
         CustomResponse.error({ res, error });
