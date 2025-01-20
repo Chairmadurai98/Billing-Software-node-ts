@@ -2,6 +2,8 @@ import { model, Schema, Document, Model } from "mongoose";
 
 export type IOrder = {
     orderId: string
+    customerName: string
+    customerAddress: string
     deletedAt?: Date | null,
     totalAmount: number
     subTotal: number
@@ -41,6 +43,8 @@ const orderSchema = new Schema<IOrder>({
         type : Number,
         default : 0
     },
+    customerName : String,
+    customerAddress : String,
     products : [{
         productId : {
             ref : "Product",

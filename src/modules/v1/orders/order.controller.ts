@@ -4,7 +4,7 @@ import orderModel from "./order.model";
 
 export const getAllOrder = async (req: Request, res: Response) => {
 
-    const { from  = new Date("2022-01-01"), to = new Date() } = req.query
+    const { from  = new Date(), to = new Date() } = req.query
     try {
         const data = await orderModel.find({
             createdAt : {
