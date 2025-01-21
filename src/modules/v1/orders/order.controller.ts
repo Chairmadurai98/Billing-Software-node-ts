@@ -21,7 +21,7 @@ export const getAllOrder = async (req: Request, res: Response) => {
 
 export const getSingleOrder = async (req: Request, res: Response) => {
     try {
-        const data = await orderModel.findById(req.params._id);
+        const data = await orderModel.findById(req.params._id).populate('products.productId');
         CustomResponse.success({ res, data });
     } catch (error) {
         CustomResponse.error({ res, error });
