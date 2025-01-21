@@ -3,14 +3,13 @@ import { CustomResponse } from "../../../_utils/helpers";
 import orderModel from "./order.model";
 
 export const getAllOrder = async (req: Request, res: Response) => {
-    const { from  = new Date(), to = new Date() } = req.query
+    const { from  = '', to = '' } = req.query
+    const query = {}
+    // from && (query.createdAt.from = new Date(from))
+    // to && (query.createdAt.to =  new Date(to))
+
     try {
-        const data = await orderModel.find({
-            createdAt : {
-                $gte : from,
-                $lte : to
-            }
-        }).populate('products.productId').sort({
+        const data = await orderModel.find(query).populate('products.productId').sort({
             createdAt : -1
         });
         CustomResponse.success({ res, data });
