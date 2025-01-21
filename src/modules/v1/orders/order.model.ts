@@ -13,7 +13,7 @@ export type IOrder = {
         productId: string
         price: number
         totalPrice: number
-        quantity: number
+        quantity: number,
     }[],
     createdAt: Date,
     updatedAt: Date
