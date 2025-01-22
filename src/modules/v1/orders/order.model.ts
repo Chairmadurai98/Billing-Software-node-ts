@@ -66,7 +66,7 @@ const orderSchema = new Schema<IOrder>({
 
 
 orderSchema.virtual('orderId').get(function(this: OrderType) {
-    const orderId = "ORD-" + this.createdAt.getTime();  
+    const orderId = "INVOICE-" + this.createdAt.getTime();  
     return orderId;
 });
 const orderModel : Model<IOrder> = model<IOrder>('Order', orderSchema)

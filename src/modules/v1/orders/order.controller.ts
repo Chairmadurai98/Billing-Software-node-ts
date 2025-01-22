@@ -2,24 +2,10 @@ import { Request, Response } from "express";
 import { CustomResponse } from "../../../_utils/helpers";
 import orderModel from "./order.model";
 
-export const getAllOrder = async (req: Request, res: Response) => {
-    const { from  = null, to = null } = req.query
-    const query : {createdAt?: { $gte?: Date | string , $lte?: Date | string }} = {}
-
-// Validate and apply `from` date filter if provided
-if (from) {
-    query.createdAt = { $gte: from };  // If `from` is provided, filter by `createdAt >= from`
-  }
-  
-  // Validate and apply `to` date filter if provided
-  if (to) {
-    query.createdAt = { ...query.createdAt, $lte: to };  // If `to` is provided, filter by `createdAt <= to`
-  }
-    // from && (query.createdAt.from = new Date(from))
-    // to && (query.createdAt.to =  new Date(to))
+export const getAllOrder = async (_req: Request, res: Response) => {
 
     try {
-        const data = await orderModel.find(query).populate('products.productId').sort({
+        const data = await orderModel.find().populate('products.productId').sort({
             createdAt : -1
         });
         CustomResponse.success({ res, data });
