@@ -1,5 +1,4 @@
-import { model ,Schema } from "mongoose";
-
+import { model, Schema, models } from "mongoose";
 const productSchema = new Schema(
     {
         productName: {
@@ -12,7 +11,7 @@ const productSchema = new Schema(
         tamilName: {
             type: String,
             required: true,
-        }, 
+        },
         deletedAt: {
             type: Date,
             default: null,
@@ -20,31 +19,24 @@ const productSchema = new Schema(
     },
     {
         timestamps: true,
-        toJSON : {
-            virtuals : true
-        }, toObject : {
-            virtuals : true
+        toJSON: {
+            virtuals: true
+        }, toObject: {
+            virtuals: true
         }
     }
 );
 
-// productSchema.pre("find", async function (next) {
-//      if (this instanceof Query) {
-//         await this.populate("categoryId").exec();
-//      }
 
-//     next();
-// });
-
-productSchema.virtual('label').get(function(){
-    const label = this.productName
+productSchema.virtual('label').get(function () {
+    const label = this.productName + ' - ' + this.tamilName
     return label
 })
-productSchema.virtual('value').get(function(){
+productSchema.virtual('value').get(function () {
     const value = this._id
     return value
 })
 
-const productModel = model("Product", productSchema);
+const productModel = models.Product || model("Product", productSchema);
 
 export default productModel;

@@ -13,7 +13,7 @@ const orderRouter = Router();
 
 /**
  * @swagger
- * /api/v1/order:
+ * /api/v2/order:
  *   get:
  *     summary: Returns the list of all the orders
  *     tags: [Order]
@@ -47,7 +47,7 @@ orderRouter.get("/", asyncHandler(orderController.getAllOrder));
 
 /**
  * @swagger
- * /api/v1/order/{id}:
+ * /api/v2/order/{id}:
  *   get:
  *     summary: Get the order by id
  *     tags: [Order]
@@ -73,7 +73,7 @@ orderRouter.get("/:id", asyncHandler(orderController.getSingleOrder));
 
 /**
  * @swagger
- * /api/v1/order:
+ * /api/v2/order:
  *   post:
  *     summary: Create a new order
  *     tags: [Order]
@@ -97,7 +97,7 @@ orderRouter.post("/", asyncHandler(orderController.createOrder));
 
 /**
  * @swagger
- * /api/v1/order/{id}:
+ * /api/v2/order/{id}:
  *   put:
  *     summary: Update the order by id
  *     tags: [Order]
@@ -126,7 +126,7 @@ orderRouter.put("/:id", asyncHandler(orderController.updateOrder));
 
 /**
  * @swagger
- * /api/v1/order/{id}:
+ * /api/v2/order/{id}:
  *   delete:
  *     summary: Remove the order by id
  *     tags: [Order]

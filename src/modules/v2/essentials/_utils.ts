@@ -7,7 +7,7 @@ export const essentialList: EssentialListTypeAsyncV2 = {
         try {
             const products = await productModel.aggregate([ {
                 $project: {
-                    label: "$productName-$tamilName",
+                    label: { $concat: ["$productName", "-", "$tamilName"] },
                     value: "$_id",
                     tamilName: 1
                 }

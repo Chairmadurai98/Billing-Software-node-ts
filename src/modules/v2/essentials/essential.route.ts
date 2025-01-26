@@ -7,7 +7,7 @@ const essentialRouter = Router();
 /**
  * @swagger
  * paths:
- *   /api/v1/essential:
+ *   /api/v2/essential:
  *     get:
  *       summary: Returns the list of all the essentials
  *       tags: [Essential]

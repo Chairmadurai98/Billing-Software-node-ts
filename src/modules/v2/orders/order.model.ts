@@ -1,4 +1,4 @@
-import { model, Schema, Document, Model } from "mongoose";
+import { model, Schema, Document, Model , models} from "mongoose";
 
 export type IOrder = {
     orderId: string
@@ -75,6 +75,6 @@ orderSchema.virtual('orderId').get(function(this: OrderType) {
     const orderId = "ORDER-" + this.createdAt.getTime();  
     return orderId;
 });
-const orderModel : Model<IOrder> = model<IOrder>('Order', orderSchema)
+const orderModel : Model<IOrder> = models.Order || model<IOrder>('Order', orderSchema)
 
 export default orderModel;

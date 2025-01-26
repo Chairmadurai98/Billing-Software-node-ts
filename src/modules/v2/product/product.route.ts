@@ -13,7 +13,7 @@ const productRouter = Router();
 
 /**
  * @swagger
- * /api/v1/product:
+ * /api/v2/product:
  *   get:
  *     summary: Returns the list of all the products
  *     tags: [Product]
@@ -32,7 +32,7 @@ productRouter.get("/", asyncHandler(productController.getAllProduct));
 
 /**
  * @swagger
- * /api/v1/product/{id}:
+ * /api/v2/product/{id}:
  *   get:
  *     summary: Get the product by id
  *     tags: [Product]
@@ -58,7 +58,7 @@ productRouter.get("/:_id", asyncHandler(productController.getSingleProduct));
 
 /**
  * @swagger
- * /api/v1/product:
+ * /api/v2/product:
  *   post:
  *     summary: Create a new product
  *     tags: [Product]
@@ -83,7 +83,7 @@ productRouter.post("/", asyncHandler(productController.createProduct));
 
 /**
  * @swagger
- * /api/v1/product/{id}:
+ * /api/v2/product/{id}:
  *   put:
  *     summary: Update the product by id
  *     tags: [Product]
@@ -115,7 +115,7 @@ productRouter.put("/:_id", asyncHandler(productController.updateProduct));
 
 /**
  * @swagger
- * /api/v1/product/{id}:
+ * /api/v2/product/{id}:
  *   delete:
  *     summary: Remove the product by id
  *     tags: [Product]
