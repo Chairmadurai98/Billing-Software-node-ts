@@ -1,4 +1,4 @@
-import { model, Schema, models } from "mongoose";
+import { model, Schema } from "mongoose";
 const productSchema = new Schema(
     {
         productName: {
@@ -37,6 +37,6 @@ productSchema.virtual('value').get(function () {
     return value
 })
 
-const productModel = models.Product || model("Product", productSchema);
+const productModel = model("Product", productSchema);
 
 export default productModel;
