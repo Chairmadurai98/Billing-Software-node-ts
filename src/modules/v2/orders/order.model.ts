@@ -6,10 +6,7 @@ export type IOrder = {
     customerName: string
     customerAddress: string
     deletedAt?: Date | null,
-    totalAmount: number
-    subTotal: number
-    paymentMethod: string
-    discount: number
+    total: number
     products: {
         productId: string
         price: number
@@ -32,20 +29,7 @@ const orderSchema = new Schema<IOrder>({
         type : Date,
         default : null
     },
-    totalAmount : {
-        type : Number,
-        default : 0
-    },
-    subTotal : {
-        type : Number,
-        default : 0
-    },
-    paymentMethod : {
-        type : String,
-        default : "Cash",
-        enum : ['Cash', 'Credit Card', 'Debit Card', 'Mobile Payment']
-    },
-    discount : { 
+    total : {
         type : Number,
         default : 0
     },
