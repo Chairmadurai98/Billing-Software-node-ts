@@ -1,4 +1,4 @@
-import { model, Schema, Document, Model , models} from "mongoose";
+import { model, Schema, Document, Model } from "mongoose";
 import counterModel from "./counter.model";
 
 export type IOrder = {

@@ -1,4 +1,4 @@
-import { Schema, model, models, Document } from 'mongoose';
+import { Schema, model, models } from 'mongoose';
 
 export type ICounter = {
     _id: string;  // This will be a string, like "orderId"
