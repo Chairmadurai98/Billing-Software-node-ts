@@ -29,7 +29,7 @@ const productSchema = new Schema(
 
 
 productSchema.virtual('label').get(function () {
-    const label = this.productName + ' - ' + this.tamilName
+    const label = this.tamilName
     return label
 })
 productSchema.virtual('value').get(function () {
