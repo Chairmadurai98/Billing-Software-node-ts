@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
 import { CustomResponse } from "../../../_utils/helpers";
 import orderModel from "./order.model";
+import mongoose from "mongoose";
+import productModel from "../product/product.model";
+const { Decimal128 } = mongoose.Types;
 
 export const getAllOrder = async (_req: Request, res: Response) => {
 
@@ -29,11 +32,19 @@ export const createOrder = async (req: Request, res: Response) => {
     try {
         // const lastOrder = await orderModel.find().sort({ createdAt: -1 }).limit(1);
         // let lastInvoiceId = lastOrder?.[0]?.invoiceId || '';
-        
-        const order = new orderModel({
-            ...req.body,
-
-        });
+        const products : any[] = req?.body?.products || []
+        const body = {
+            products : products.map(product=> {
+                return {
+                    ...product,
+                    subTotal : Decimal128.fromString(product.subTotal || '0')
+                }
+            }),
+            customerName : req.body.customerName || '',
+            customerAddress : req.body.customerAddress || '',
+            total : Decimal128.fromString(req.body.total || '0') || 0
+        }
+        const order = new orderModel(body);
         const data = await order.save();
         CustomResponse.success({ res, data  });
     } catch (error) {

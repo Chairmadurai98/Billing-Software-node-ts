@@ -1,4 +1,4 @@
-import { model, Schema, Document, Model } from "mongoose";
+import { model, Schema, Document, Model, Decimal128 } from "mongoose";
 import counterModel from "./counter.model";
 
 export type IOrder = {
@@ -6,11 +6,11 @@ export type IOrder = {
     customerName: string
     customerAddress: string
     deletedAt?: Date | null,
-    total: number
+    total: Decimal128,
     products: {
-        productId: string
-        price: number
-        subTotal: number
+        productId: string,
+        price: number,
+        subTotal: Decimal128,
         quantity: number,
     }[],
     createdAt: Date,
