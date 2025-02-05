@@ -20,50 +20,50 @@ export type IOrder = {
 export type OrderType = IOrder & Document
 
 const orderSchema = new Schema<IOrder>({
-    orderId : {
-        unique : true,
+    orderId: {
+        unique: true,
         // required : true,
-        type : String,
+        type: String,
     },
-    deletedAt : {
-        type : Date,
-        default : null
+    deletedAt: {
+        type: Date,
+        default: null
     },
-    total : {
-        type : Number,
-        default : 0
+    total: {
+        type: Number,
+        default: 0
     },
-    customerName : String,
-    customerAddress : String,
-    products : [{
-        productId : {
-            ref : "Product",
-            type : Schema.Types.ObjectId
+    customerName: String,
+    customerAddress: String,
+    products: [{
+        productId: {
+            ref: "Product",
+            type: Schema.Types.ObjectId
         },
-        price : Number,
-        subTotal : Number,
-        quantity : Number,
+        price: Number,
+        subTotal: Number,
+        quantity: Number,
     }]
 }, {
     timestamps: true,
-    toJSON : {
-        virtuals : true
+    toJSON: {
+        virtuals: true
     },
-    toObject : {
-        virtuals : true
+    toObject: {
+        virtuals: true
     }
 });
 
 
-orderSchema.pre('save', async function(this: IOrder, next) {
+orderSchema.pre('save', async function (this: IOrder, next) {
     if (!this.orderId) {
         try {
             const counter = await counterModel.findByIdAndUpdate(
-                { _id: 'orderId' }, 
+                { _id: 'orderId' },
                 { $inc: { seq: 1 } },  // Increment the sequence
                 { new: true, upsert: true }  // Create the counter if not found
             );
-            this.orderId = `ORD-${counter.seq.toString().padStart(6, '0')}`;  // Format the invoice ID
+            this.orderId = counter.seq;  // Format the invoice ID
             next();
         } catch (error) {
             next(error as Error);
@@ -73,6 +73,6 @@ orderSchema.pre('save', async function(this: IOrder, next) {
     }
 });
 
-const orderModel : Model<IOrder> = model<IOrder>('Order', orderSchema)
+const orderModel: Model<IOrder> = model<IOrder>('Order', orderSchema)
 
 export default orderModel;
