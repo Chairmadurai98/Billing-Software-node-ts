@@ -1,18 +1,22 @@
 import { model, Schema, Document, Model, Decimal128 } from "mongoose";
 import counterModel from "./counter.model";
 
+type OrderProductType = {
+    productId: ProductType,
+    price: number,
+    subTotal: Decimal128,
+    quantity: number,
+    label : string,
+    units: 'kgs' | 'kg' | 'pc' | 'pcs'
+}
+
 export type IOrder = {
     orderId: string
     customerName: string
     customerAddress: string
     deletedAt?: Date | null,
     total: Decimal128,
-    products: {
-        productId: string,
-        price: number,
-        subTotal: Decimal128,
-        quantity: number,
-    }[],
+    products: OrderProductType[],
     createdAt: Date,
     updatedAt: Date
 }
@@ -43,6 +47,10 @@ const orderSchema = new Schema<IOrder>({
         price: Number,
         subTotal: Number,
         quantity: Number,
+        units: {
+            type: String,
+            enum: ['kgs', 'kg', 'pc', 'pcs']
+        }
     }]
 }, {
     timestamps: true,
@@ -72,6 +80,7 @@ orderSchema.pre('save', async function (this: IOrder, next) {
         next();
     }
 });
+
 
 const orderModel: Model<IOrder> = model<IOrder>('Order', orderSchema)
 
