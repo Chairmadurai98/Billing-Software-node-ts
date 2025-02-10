@@ -49,7 +49,7 @@ const orderSchema = new Schema<IOrder>({
         quantity: Number,
         units: {
             type: String,
-            enum: ['kgs', 'kg', 'pc', 'pcs']
+            // enum: ['kgs', 'kg', 'pc', 'pcs', '']
         }
     }]
 }, {
