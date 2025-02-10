@@ -8,14 +8,17 @@ const { Decimal128 } = mongoose.Types;
 export const getAllOrder = async (_req: Request, res: Response) => {
 
     try {
-        const data = await orderModel.aggregate([{
-            $match: {
-                deletedAt: null
-            }
-        }, ...aggregateFilter])
-            .sort({
-                createdAt: -1
-            }).exec();
+        // const data = await orderModel.aggregate([{
+        //     $match: {
+        //         deletedAt: null
+        //     }
+        // }, ...aggregateFilter])
+        //     .sort({
+        //         createdAt: -1
+        //     }).exec();
+        const data = await orderModel.find().populate('products.productId').sort({
+            createdAt : -1
+        });
         CustomResponse.success({ res, data });
     } catch (error) {
         CustomResponse.error({ res, error });
@@ -24,14 +27,15 @@ export const getAllOrder = async (_req: Request, res: Response) => {
 
 export const getSingleOrder = async (req: Request, res: Response) => {
     try {
-        const [data] = await orderModel.aggregate([{
-            $match: {
-                deletedAt: null,
-                _id: new mongoose.Types.ObjectId(req.params.id)
-            }
-        }, ...aggregateFilter, {
-            $limit: 1
-        }]).exec();
+        // const [data] = await orderModel.aggregate([{
+        //     $match: {
+        //         deletedAt: null,
+        //         _id: new mongoose.Types.ObjectId(req.params.id)
+        //     }
+        // }, ...aggregateFilter, {
+        //     $limit: 1
+        // }]).exec();
+       const data = await orderModel.findById(req.params.id).populate('products.productId');
         CustomResponse.success({ res, data });
     } catch (error) {
         console.log(error, "error")
