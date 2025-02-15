@@ -4,7 +4,9 @@
   "description": "Billing Software",
   "main": "index.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "rimraf dist && tsc",
+    "ts.check": "tsc --project tsconfig.json",
+    "add-build": "git add dist",
     "start": "node --env-file=.env.production dist/index.js",
     "dev": "tsc && nodemon --exec ts-node src/index.ts"
   },
@@ -28,6 +30,8 @@
     "@types/swagger-jsdoc": "^6.0.4",
     "@types/swagger-ui-express": "^4.1.6",
     "nodemon": "^3.1.7",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   }

@@ -36,6 +36,9 @@ const v2Options = {
 const v2Specs = swaggerJsdoc(v2Options);
 app.use("/api/v2/api-docs", swaggerUiExpress.serve, swaggerUiExpress.setup(v2Specs));
 app.use("/api/v2", v2Router);
+app.use("/", (_, res) => {
+    res.send("Hello World");
+});
 
 
 app.listen(PORT, async () => {
