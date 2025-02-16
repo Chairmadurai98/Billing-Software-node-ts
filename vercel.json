@@ -8,8 +8,8 @@
     ],
     "routes": [
         {
-            "src": "/api/v2",
-            "dest": "/public/modules/v2/index.js"
+            "src": "/api/v2/(.*)",
+            "dest": "/public/modules/v2/$1"
         },
         {
             "src": "/",
