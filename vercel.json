@@ -10,6 +10,9 @@
         {
             "src": "/(.*)",
             "dest": "/public/index.js"
+        },{
+            "src" : "/api/v2/product",
+            "dest": "/public/modules/v2/product/product.route.js"
         }
     ]
 }
