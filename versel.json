@@ -5,80 +5,14 @@
         "src": "public/index.js",
         "use": "@vercel/node",
         "config": {
-          "includeFiles": [
-            "public/**"
-          ]
+          "includeFiles": ["public/**"]
         }
       }
     ],
     "routes": [
       {
-        "src": "/",
+        "src": "/(.*)",
         "dest": "public/index.js"
-      },
-      {
-        "src": "/orders",
-        "dest": "public/modules/v2/orders.route.js"
-      },
-      {
-        "src": "/orders/:id",
-        "dest": "public/modules/v2/orders.route.js"
-      },
-      {
-        "src": "/orders/:id/items",
-        "dest": "public/modules/v2/order-items.route.js"
-      },
-      {
-        "src": "/orders/:id/items/:item_id",
-        "dest": "public/modules/v2/order-items.route.js"
-      },
-      {
-        "src": "/products",
-        "dest": "public/modules/v2/products.route.js"
-      },
-      {
-        "src": "/products/:id",
-        "dest": "public/modules/v2/products.route.js"
-      },
-      {
-        "src": "/products/:id/variants",
-        "dest": "public/modules/v2/product-variants.route.js"
-      },
-      {
-        "src": "/products/:id/variants/:variant_id",
-        "dest": "public/modules/v2/product-variants.route.js"
-      },
-      {
-        "src": "/customers",
-        "dest": "public/modules/v2/customers.route.js"
-      },
-      {
-        "src": "/customers/:id",
-        "dest": "public/modules/v2/customers.route.js"
-      },
-      {
-        "src": "/payments",
-        "dest": "public/modules/v2/payments.route.js"
-      },
-      {
-        "src": "/payments/:id",
-        "dest": "public/modules/v2/payments.route.js"
-      },
-      {
-        "src": "/shipping",
-        "dest": "public/modules/v2/shipping.route.js"
-      },
-      {
-        "src": "/shipping/:id",
-        "dest": "public/modules/v2/shipping.route.js"
-      },
-      {
-        "src": "/taxes",
-        "dest": "public/modules/v2/taxes.route.js"
-      },
-      {
-        "src": "/taxes/:id",
-        "dest": "public/modules/v2/taxes.route.js"
       }
     ]
   }
