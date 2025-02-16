@@ -46,6 +46,7 @@ const v2Options = {
 const v2Specs = (0, swagger_jsdoc_1.default)(v2Options);
 app.use("/api/v2/api-docs", swagger_ui_express_1.default.serve, swagger_ui_express_1.default.setup(v2Specs));
 app.use("/api/v2", v2_1.default);
+
 app.use("/", (_, res) => {
     res.send("Hello World");
 });
