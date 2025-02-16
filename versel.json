@@ -15,6 +15,10 @@
       {
         "src": "/(.*)",                                 
         "dest": "dist/modules/v2/$1.route.js"          
+      },
+      {
+        "src": "/(.*)",                                 
+        "dest": "dist/modules/v2/index.js"          
       }
     ]
   }
