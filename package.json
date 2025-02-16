@@ -2,7 +2,7 @@
   "name": "ts-billing-products",
   "version": "1.0.0",
   "description": "Billing Software",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "rimraf dist && tsc",
     "ts.check": "tsc --project tsconfig.json",
