@@ -4,7 +4,7 @@
   "description": "Billing Software",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf dist && tsc",
+    "build": "rimraf public && tsc",
     "ts.check": "tsc --project tsconfig.json",
     "start": "node --env-file=.env.production dist/index.js",
     "dev": "tsc && nodemon --exec ts-node src/index.ts"
