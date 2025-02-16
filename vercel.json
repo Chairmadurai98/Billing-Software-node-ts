@@ -12,6 +12,10 @@
             "dest": "/public/modules/v2/(.*).route.js"
         },
         {
+            "src": "/api/v2",
+            "dest": "/public/modules/v2/index.js"
+        },
+        {
             "src": "/(.*)",
             "dest": "/public/index.js"
         }
