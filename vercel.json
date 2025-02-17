@@ -12,7 +12,7 @@
             "dest": "/public/index.js"
         },
         {
-            "src": "/api/v2/(.*)",
+            "src": "/api/(.*)",
             "dest": "/public/modules/v2/index.js"
         },
         {
