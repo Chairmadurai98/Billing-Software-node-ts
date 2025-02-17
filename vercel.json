@@ -18,7 +18,7 @@
         {
             "src": "/api/v2/order",
             "dest": "/public/modules/v2/orders/order.route.js"
-        }
+        },
         {
             "src": "/api/v2/essential",
             "dest": "/public/modules/v2/essentials/essential.route.js"
