@@ -8,7 +8,11 @@
     ],
     "routes": [
         {
-            "src": "/api/(.*)",
+            "src": "/",
+            "dest": "/public/index.js"
+        },
+        {
+            "src": "/api/v2",
             "dest": "/public/modules/v2/index.js"
         },
         {
@@ -16,12 +20,12 @@
             "dest": "/public/modules/v2/product/product.route.js"
         },
         {
-            "src": "/api/v2/order",
-            "dest": "/public/modules/v2/orders/order.route.js"
-        },
-        {
             "src": "/api/v2/essential",
             "dest": "/public/modules/v2/essentials/essential.route.js"
+        },
+        {
+            "src": "/api/v2/orders",
+            "dest": "/public/modules/v2/orders/order.route.js"
         }
     ]
 }
