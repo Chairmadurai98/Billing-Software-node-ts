@@ -8,11 +8,20 @@
     ],
     "routes": [
         {
-            "src": "/(.*)",
+            "src": "/",
             "dest": "/public/index.js"
-        },{
-            "src" : "/api/v2/product",
+        },
+        {
+            "src": "/api/v2/product",
             "dest": "/public/modules/v2/product/product.route.js"
+        },
+        {
+            "src": "/api/v2/order",
+            "dest": "/public/modules/v2/orders/order.route.js"
+        }
+        {
+            "src": "/api/v2/essential",
+            "dest": "/public/modules/v2/essentials/essential.route.js"
         }
     ]
 }
