@@ -15,6 +15,7 @@ export type IOrder = {
     customerName: string
     customerAddress: string
     deletedAt?: Date | null,
+    createdDate?: Date,
     total: Decimal128,
     products: OrderProductType[],
     createdAt: Date,
@@ -39,6 +40,10 @@ const orderSchema = new Schema<IOrder>({
     },
     customerName: String,
     customerAddress: String,
+    createdDate : {
+        type : Date,
+        default : Date.now()
+    },
     products: [{
         productId: {
             ref: "Product",

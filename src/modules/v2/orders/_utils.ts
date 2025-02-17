@@ -17,6 +17,7 @@ export const aggregateFilter = [
             orderId: 1,
             customerName: 1,
             customerAddress: 1,
+            createdDate : 1,
             total: 1,
             products: {
                 units: 1,

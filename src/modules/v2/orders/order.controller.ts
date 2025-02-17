@@ -58,6 +58,7 @@ export const createOrder = async (req: Request, res: Response) => {
                 }
             }),
             customerName: req.body.customerName || '',
+            createdDate: req.body.createdDate || '',
             customerAddress: req.body.customerAddress || '',
             total: Decimal128.fromString(req.body.total || '0') || 0
         }
