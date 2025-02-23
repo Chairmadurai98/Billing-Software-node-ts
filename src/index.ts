@@ -8,7 +8,7 @@ import connection from "./_utils/connection";
 import { Constants } from "./_utils/constants";
 import swaggerUiExpress from "swagger-ui-express";
 
-const { PORT , DOMAIN} = Constants;
+const { PORT, DOMAIN } = Constants;
 const app = express();
 
 app.use(express.json());
@@ -30,12 +30,15 @@ const v2Options = {
             },
         ],
     },
-    apis: ["dist/modules/v2/index.js", "dist/modules/v2/**/*.route.js"],
+    apis: ["public/modules/v2/index.js", "public/modules/v2/**/*.route.js"],
 };
 
 const v2Specs = swaggerJsdoc(v2Options);
-app.use("/", swaggerUiExpress.serve, swaggerUiExpress.setup(v2Specs));
+app.use("/api/v2/api-docs", swaggerUiExpress.serve, swaggerUiExpress.setup(v2Specs));
 app.use("/api/v2", v2Router);
+app.use("/", (_, res) => {
+    res.redirect("/api/v2/api-docs");
+});
 
 
 app.listen(PORT, async () => {
